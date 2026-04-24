@@ -44,7 +44,7 @@ sequenceDiagram
     participant Board
     
     User->>Game: play()
-    loop Hanggang may nanalo
+    loop Until someone wins
         Game->>Player: get current player
         Game->>User: "Roll dice"
         User->>Game: rollDice()
@@ -60,7 +60,7 @@ sequenceDiagram
         alt Nanalo na
             Board-->>Game: true
             Game->>User: "Player wins!"
-        else Wala pa
+        else Nothing yet
             Board-->>Game: false
             Game->>Game: switchPlayer()
         end
