@@ -35,4 +35,37 @@ classDiagram
     Game "1" --> "2..*" Player
     Player ..> Dice : uses
 ```
+```mermaid
+sequenceDiagram
+    actor User
+    participant Game
+    participant Player
+    participant Dice
+    participant Board
+    
+    User->>Game: play()
+    loop Hanggang may nanalo
+        Game->>Player: get current player
+        Game->>User: "Roll dice"
+        User->>Game: rollDice()
+        Game->>Dice: roll()
+        Dice-->>Game: return steps
+        Game->>Player: move(steps)
+        Player->>Player: position += steps
+        Player-->>Game: new position
+        Game->>Board: checkSnakeOrLadder(position)
+        Board-->>Game: return finalPosition
+        Game->>Player: setPosition(finalPosition)
+        Game->>Board: isWinPosition(finalPosition)
+        alt Nanalo na
+            Board-->>Game: true
+            Game->>User: "Player wins!"
+        else Wala pa
+            Board-->>Game: false
+            Game->>Game: switchPlayer()
+        end
+    end
+```
+```memaid
 
+```
