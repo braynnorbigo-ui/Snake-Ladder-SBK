@@ -57,7 +57,7 @@ sequenceDiagram
         Board-->>Game: return finalPosition
         Game->>Player: setPosition(finalPosition)
         Game->>Board: isWinPosition(finalPosition)
-        alt Nanalo na
+        alt wins
             Board-->>Game: true
             Game->>User: "Player wins!"
         else Nothing yet
